@@ -1,2 +1,5 @@
 # log files
 *.log
+
+# test files
+test.sh
