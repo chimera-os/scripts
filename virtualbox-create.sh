@@ -3,6 +3,7 @@
 # Variables
 HDSIZE=1000 # Host machine hard disk size
 LHDSIZE=1000 # LFS hard disk size
+LHDNAME="lfs"
 
 touch vm.log # log file
 
@@ -32,4 +33,7 @@ vboxmanage storageattach $VMNAME --storagectl "SATA Controller" \
 	--medium $HOME/'VirtualBox VMs'/$VMNAME/$VMNAME.vdi
 
 # LFS' Hard disk creation
-
+vboxmanage createhd --filename $HOME/'VirtualBox VMs'/$VMNAME/$LHDNAME.vdi --size $HDSIZE >> vm.log
+vboxmanage storageattach $VMNAME --storagectl "SATA Controller" \
+	--port 1 --device 0 --type hdd \
+	--medium $HOME/'VirtualBox VMs'/$VMNAME/$LHDNAME.vdi

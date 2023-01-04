@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATHTOLIST="./packages.list"
+PATHTOLIST="./packages.txt"
 
 # Fail on error and report it, debug all lines
 set -eu -o pipefail
@@ -10,15 +10,13 @@ USER=$(id -u)
 test $USER -eq 0 || echo "You should have sudo privilege to run this script"
 
 echo "Ready to install the following packages:"
-cat packages.list
+echo "$(cat packages.list)"
 
 while true; do
-    read -p "Do you wish to continue?" yn
+    read -p "Do you wish to continue? " yn
     case $yn in
-        [Yy]* ) make install; break;;
+        [Yy]* ) apt-get install $(cat $PATHTOLIST);;
         [Nn]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
 done
-
-cat packages.list | xargs apt-get install -y
