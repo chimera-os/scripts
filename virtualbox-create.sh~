@@ -10,7 +10,7 @@ touch vm.log # log file
 echo "Creating a VM..."
 read -p "How should it be named (lfs is taken)? " VMNAME
 
-if [[ $VMNAME -eq "lfs" ]]
+if [[$VMNAME -eq "lfs"]]
 then
 	echo "This name is reserved for the LFS hard disk. Changing to LFS..."
 	VMNAME="LFS"
